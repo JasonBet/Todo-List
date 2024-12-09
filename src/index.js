@@ -17,8 +17,9 @@ currProject.addTodo({title: "run", dueDate: "01/01/2025"});
 currProject.addTodo({title: "eat", priority: 3});
 currProject.addTodo({title: "sleep", description: "For at least 8 hours"});
 
-console.log(projectsArr);
-console.log(currProject.todos);
+currProject.deleteTodo(currProject.todos[1]);
 
-currProject.completeTodo(currProject.todos[1]);
+currProject.editTodo(currProject.todos[2], {priority: 2});
+currProject.editTodo(currProject.todos[0], {description: "by hand"});
+
 console.log(currProject.todos);
