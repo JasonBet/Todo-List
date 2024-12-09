@@ -21,4 +21,8 @@ export class ProjectManager {
     getCurrProject() {
         return this.currProject;
     }
+
+    deleteProject(project) {
+        this.projectsArr.splice(this.getProjectIndex(project), 1);
+    }
 }

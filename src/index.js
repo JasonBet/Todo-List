@@ -2,8 +2,6 @@ import "./styles.css";
 import { ProjectManager } from "./projectManager.js";
 
 const projManager = new ProjectManager;
-console.log(projManager);
-
 
 // Temp initial code to check functionality
 projManager.getCurrProject().addTodo({title: "wash dishes"});
@@ -17,6 +15,18 @@ projManager.getCurrProject().editTodo(projManager.getCurrProject().todos[2], {pr
 projManager.getCurrProject().editTodo(projManager.getCurrProject().todos[0], {description: "by hand"});
 
 
-const project2 = projManager.addProject("Long Term Goals");
-const project3 = projManager.addProject("Groceries");
+projManager.addProject("Long Term Goals");
+projManager.addProject("Groceries");
 
+// Test projManager ability to switch projects and add tasks
+projManager.setCurrProject(projManager.projectsArr[1]);
+projManager.getCurrProject().addTodo({title: "Get a job", priority: 3});
+
+projManager.setCurrProject(projManager.projectsArr[2]);
+projManager.getCurrProject().addTodo({title: "Bananas"});
+
+console.log(JSON.stringify(projManager.getCurrProject()));
+console.log(JSON.stringify(projManager));
+
+projManager.deleteProject(projManager.projectsArr[1]);
+console.log(JSON.stringify(projManager));
