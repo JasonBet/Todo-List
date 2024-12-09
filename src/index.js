@@ -1,7 +1,9 @@
 import "./styles.css";
 import { ProjectManager } from "./projectManager.js";
+import { RenderManager } from "./renderManager.js";
 
 const projManager = new ProjectManager;
+const renderManager = new RenderManager;
 
 // Temp initial code to check functionality
 projManager.getCurrProject().addTodo({title: "wash dishes"});
