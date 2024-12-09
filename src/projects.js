@@ -11,6 +11,7 @@ export class Project {
         this.todos.push(todoItem);
     }
 
+    // helper function for other methods
     getTodoIndex(todoItem) {
         return this.todos.findIndex(task => task === todoItem);
     }

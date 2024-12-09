@@ -1,25 +1,22 @@
 import "./styles.css";
-import { Project } from "./projects.js";
+import { ProjectManager } from "./projectManager.js";
 
-// Create an array to store projects
-let projectsArr = [];
-
-// Create initial default project and add it to array of projects
-const project1 = new Project("Today");
-projectsArr.push(project1);
-
-// Initialize current/active project (allows to switch focus to other projects)
-const currProject = projectsArr[0];
+const projManager = new ProjectManager;
+console.log(projManager);
 
 
-currProject.addTodo({title: "wash dishes"});
-currProject.addTodo({title: "run", dueDate: "01/01/2025"});
-currProject.addTodo({title: "eat", priority: 3});
-currProject.addTodo({title: "sleep", description: "For at least 8 hours"});
+// Temp initial code to check functionality
+projManager.getCurrProject().addTodo({title: "wash dishes"});
+projManager.getCurrProject().addTodo({title: "run", dueDate: "01/01/2025"});
+projManager.getCurrProject().addTodo({title: "eat", priority: 3});
+projManager.getCurrProject().addTodo({title: "sleep", description: "For at least 8 hours"});
 
-currProject.deleteTodo(currProject.todos[1]);
+projManager.getCurrProject().deleteTodo(projManager.getCurrProject().todos[1]);
 
-currProject.editTodo(currProject.todos[2], {priority: 2});
-currProject.editTodo(currProject.todos[0], {description: "by hand"});
+projManager.getCurrProject().editTodo(projManager.getCurrProject().todos[2], {priority: 2});
+projManager.getCurrProject().editTodo(projManager.getCurrProject().todos[0], {description: "by hand"});
 
-console.log(currProject.todos);
+
+const project2 = projManager.addProject("Long Term Goals");
+const project3 = projManager.addProject("Groceries");
+
