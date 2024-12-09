@@ -1,6 +1,5 @@
 import "./styles.css";
 import { Project } from "./projects.js";
-import { Todo } from "./todo.js";
 
 // Create an array to store projects
 let projectsArr = [];
@@ -13,10 +12,10 @@ projectsArr.push(project1);
 const currProject = projectsArr[0];
 
 
-currProject.addTodo("wash dishes");
-currProject.addTodo("run");
-currProject.addTodo("eat");
-currProject.addTodo("sleep", "for at least 8 hours");
+currProject.addTodo({title: "wash dishes"});
+currProject.addTodo({title: "run", dueDate: "01/01/2025"});
+currProject.addTodo({title: "eat", priority: 3});
+currProject.addTodo({title: "sleep", description: "For at least 8 hours"});
 
 console.log(projectsArr);
 console.log(currProject.todos);

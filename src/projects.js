@@ -1,10 +1,13 @@
+import { Todo } from "./todo.js";
+
 export class Project {
     constructor(name) {
         this.name = name;
         this.todos = [];
     }
 
-    addTodo(todoItem) {
+    addTodo({title, description = "", dueDate = "", priority = 0}) {
+        const todoItem = new Todo(title, description, dueDate, priority);
         this.todos.push(todoItem);
     }
 
