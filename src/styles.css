@@ -25,10 +25,6 @@ img {
 }
 
 /* Styles */
-body {
-
-}
-
 .content-container {
   width: 100vw;
   height: 100vh;
@@ -53,3 +49,11 @@ body {
   grid-template-rows: 100px 3fr 100px;
 }
   
+.add-task-sidebar {
+  display: flex;
+}
+
+.svg-add-symbol {
+  width: 20px;
+  height: auto;
+}
