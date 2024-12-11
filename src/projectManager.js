@@ -25,4 +25,10 @@ export class ProjectManager {
     deleteProject(project) {
         this.projectsArr.splice(this.getProjectIndex(project), 1);
     }
+
+    getProjectNames() {
+        const projectNames = [];
+        this.projectsArr.forEach(project => projectNames.push(project.name));
+        return projectNames;
+    }
 }
