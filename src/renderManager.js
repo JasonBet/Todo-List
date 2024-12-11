@@ -25,7 +25,15 @@ export class RenderManager {
         addTaskSideContainer.appendChild(addTaskText);
 
         const projectsListContainer = document.createElement("div")
-        projectsListContainer.textContent = "Projects";
+        const projectListHead = document.createElement("h2");
+        projectListHead.textContent = "Projects";
+        const projectsListDiv = document.createElement("div");
+        const addProjectButton = document.createElement("button");
+        addProjectButton.textContent = "Add Project";
+
+        projectsListContainer.appendChild(projectListHead);
+        projectsListContainer.appendChild(projectsListDiv);
+        projectsListContainer.appendChild(addProjectButton);
 
         sidebarContainer.appendChild(addTaskSideContainer);
         sidebarContainer.appendChild(projectsListContainer);
