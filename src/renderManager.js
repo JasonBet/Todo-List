@@ -24,10 +24,12 @@ export class RenderManager {
         this.addTaskSideContainer.appendChild(this.svgAddTaskFromString);
         this.addTaskSideContainer.appendChild(this.addTaskText);
 
-        this.projectsListContainer = document.createElement("div")
+        this.projectsListContainer = document.createElement("div");
+        this.projectsListContainer.classList.add("projects-sidebar-container");
         this.projectListHead = document.createElement("h2");
         this.projectListHead.textContent = "Projects";
         this.projectsListDiv = document.createElement("div");
+        this.projectsListDiv.classList.add("projects-list-div");
         this.addProjectButton = document.createElement("button");
         this.addProjectButton.textContent = "Add Project";
 
