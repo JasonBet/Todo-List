@@ -1,9 +1,11 @@
 import "./styles.css";
 import { ProjectManager } from "./projectManager.js";
 import { RenderManager } from "./renderManager.js";
+import { EventManager } from "./eventManager.js";
 
 const projManager = new ProjectManager;
 const renderManager = new RenderManager;
+const eventManager = new EventManager;
 
 renderManager.renderSidebarContainer(projManager.getProjectNames());
 

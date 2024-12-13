@@ -10,15 +10,16 @@ export class RenderManager {
 
         // Initialize Sidebar Content
         this.addTaskSideContainer = document.createElement("div");
-        this.addTaskSideContainer.classList.add("add-task-sidebar");
+        this.addTaskSideContainer.classList.add("add-task-sidebar", "action-add-task");
 
         // SVG String converted parsed to svg element
         this.svgAddTaskString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus-circle</title><path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
         this.parser = new DOMParser();
         this.doc = this.parser.parseFromString(this.svgAddTaskString, "image/svg+xml");
         this.svgAddTaskFromString = this.doc.documentElement;
-        this.svgAddTaskFromString.classList.add("svg-add-symbol");
+        this.svgAddTaskFromString.classList.add("svg-add-symbol", "action-add-task");
         this.addTaskText = document.createElement("p");
+        this.addTaskText.classList.add("action-add-task");
         this.addTaskText.textContent = "Add Task";
 
         this.addTaskSideContainer.appendChild(this.svgAddTaskFromString);
@@ -31,6 +32,7 @@ export class RenderManager {
         this.projectsListDiv = document.createElement("div");
         this.projectsListDiv.classList.add("projects-list-div");
         this.addProjectButton = document.createElement("button");
+        this.addProjectButton.classList.add("action-add-project");
         this.addProjectButton.textContent = "Add Project";
 
         this.projectsListContainer.appendChild(this.projectListHead);
@@ -47,6 +49,7 @@ export class RenderManager {
         this.tasksContainer = document.createElement("div");
         this.tasksContainer.classList.add("tasks-container");
         this.deleteProjButton = document.createElement("button");
+        this.deleteProjButton.classList.add("delete-button");
         this.deleteProjButton.textContent = "Delete Project";
 
         this.projectContainer.appendChild(this.projectName);
