@@ -42,8 +42,10 @@ export class RenderManager {
 
         // Initialize Project Content
         this.projectName = document.createElement("h1");
+        this.projectName.classList.add("project-header");
         this.projectName.textContent = "Project Name";
         this.tasksContainer = document.createElement("div");
+        this.tasksContainer.classList.add("tasks-container");
         this.deleteProjButton = document.createElement("button");
         this.deleteProjButton.textContent = "Delete Project";
 
@@ -72,7 +74,14 @@ export class RenderManager {
         })
     }
 
-    renderProjectContainer() {
-
+    renderProjectContainer(currProject) {
+        console.log(currProject.todos);
+        this.projectName.textContent = currProject.name;
+        currProject.todos.forEach(todo => {
+            const divTodo = document.createElement("div");
+            divTodo.textContent = todo.title;
+            divTodo.classList.add("todo-item");
+            this.tasksContainer.appendChild(divTodo);
+        })
     }
 }

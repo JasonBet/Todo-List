@@ -7,6 +7,7 @@ const renderManager = new RenderManager;
 
 renderManager.renderSidebarContainer(projManager.getProjectNames());
 
+
 // Temp initial code to check functionality
 projManager.getCurrProject().addTodo({title: "wash dishes"});
 projManager.getCurrProject().addTodo({title: "run", dueDate: "01/01/2025"});
@@ -28,7 +29,10 @@ projManager.getCurrProject().addTodo({title: "Get a job", priority: 3});
 
 projManager.setCurrProject(projManager.projectsArr[2]);
 projManager.getCurrProject().addTodo({title: "Bananas"});
+projManager.getCurrProject().addTodo({title: "Milk"});
 
 projManager.deleteProject(projManager.projectsArr[1]);
 console.log(JSON.stringify(projManager.projectsArr));
 console.log(projManager.getProjectNames());
+
+renderManager.renderProjectContainer(projManager.getCurrProject());
