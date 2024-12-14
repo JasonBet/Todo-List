@@ -8,6 +8,8 @@ export class EventManager {
                 this.addTaskPopUp();
             } else if(e.target.classList.contains("action-add-project")) {
                 this.addProjectPopUp();
+            } else if(e.target.classList.contains("project-name")){
+                this.switchProject(e.target.textContent);
             }
         })
     }
@@ -123,5 +125,12 @@ export class EventManager {
         addProjectDialog.appendChild(form);
         this.sidebarContainer.appendChild(addProjectDialog);
         addProjectDialog.showModal();
+    }
+
+    switchProject(title) {
+        const event = new CustomEvent("switchProject", {
+            detail: {title}
+        });
+        document.dispatchEvent(event);
     }
 }

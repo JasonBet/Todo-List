@@ -21,6 +21,16 @@ document.addEventListener("projectCreated", (e) => {
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
 })
 
+document.addEventListener("switchProject", (e) => {
+    const {title} = e.detail;
+    projManager.projectsArr.forEach(project => {
+        if(project.name === title){
+            projManager.setCurrProject(project);
+            renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+        }
+    })
+})
+
 renderManager.renderSidebarContainer(projManager.getProjectNames());
 
 
