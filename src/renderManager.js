@@ -82,29 +82,25 @@ export class RenderManager {
 
     updateTasks(currProject) {
         this.tasksContainer.innerHTML = "";
-        currProject.todos.forEach(todo => {
+        currProject.todos.forEach((todo, index) => {
             const divTodoItem = document.createElement("div");
             divTodoItem.classList.add("div-todo-item");
+            divTodoItem.setAttribute("data-index", index); // Add data attribute to track index
+
             this.svgAddBullet = document.createElement("div");
-            this.svgAddBullet.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>circle-outline</title><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
-            this.svgAddBullet.classList.add("svg-bullet-symbol")
-            this.svgAddBullet.addEventListener("mouseenter", () => {
-                const path = this.svgAddBullet.querySelector("path");
-                path.setAttribute("d", "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"); // Filled circle path
-            });
-            
-            this.svgAddBullet.addEventListener("mouseleave", () => {
-                const path = this.svgAddBullet.querySelector("path");
-                path.setAttribute("d", "M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"); // Outline circle path
-            });
-            
+            this.svgAddBullet.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>circle-outline</title>
+                <path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
+            this.svgAddBullet.classList.add("svg-bullet-symbol");
+            this.svgAddBullet.setAttribute("data-index", index); // Add data attribute here too
+
             const todoItemText = document.createElement("p");
             todoItemText.textContent = todo.title;
             todoItemText.classList.add("todo-item");
 
             divTodoItem.appendChild(this.svgAddBullet);
             divTodoItem.appendChild(todoItemText);
-            this.tasksContainer.appendChild(divTodoItem);  
-        })
+            this.tasksContainer.appendChild(divTodoItem);
+        });
     }
 }

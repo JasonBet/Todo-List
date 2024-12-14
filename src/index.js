@@ -31,10 +31,20 @@ document.addEventListener("switchProject", (e) => {
     })
 })
 
-document.addEventListener("deleteProject", (e) => {
+document.addEventListener("deleteProject", () => {
     projManager.deleteProject(projManager.getCurrProject());
     projManager.setCurrProject(projManager.projectsArr[0]);
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
 })
+
+document.addEventListener("completeTask", (e) => {
+    const { index } = e.detail;
+    const currProject = projManager.getCurrProject();
+
+    if (index >= 0 && index < currProject.todos.length) {
+        currProject.todos.splice(index, 1);
+        renderManager.renderPage(projManager.getProjectNames(), currProject);
+    }
+});
 
 renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());

@@ -16,8 +16,26 @@ export class EventManager {
         this.projectContainer.addEventListener("click", (e) => {
             if(e.target.classList.contains("delete-button")){
                 this.deleteProject();
+            } else if(e.target.closest(".svg-bullet-symbol")) {
+                this.completeTask(e);
             }
         })
+
+        this.projectContainer.addEventListener("mouseenter", (e) => {
+            const bullet = e.target.closest(".svg-bullet-symbol");
+            if (bullet) {
+                const path = bullet.querySelector("path");
+                path.setAttribute("d", "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"); // Filled circle path
+            }
+        }, true); // Use `true` to capture events in the capturing phase
+        
+        this.projectContainer.addEventListener("mouseleave", (e) => {
+            const bullet = e.target.closest(".svg-bullet-symbol");
+            if (bullet) {
+                const path = bullet.querySelector("path");
+                path.setAttribute("d", "M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"); // Outline circle path
+            }
+        }, true);
     }
 
     addTaskPopUp() {
@@ -142,6 +160,14 @@ export class EventManager {
 
     deleteProject() {
         const event = new CustomEvent("deleteProject", {});
+        document.dispatchEvent(event);
+    }
+
+    completeTask(e) {
+        const index = e.target.closest(".svg-bullet-symbol").getAttribute("data-index");
+        const event = new CustomEvent("completeTask", {
+            detail: { index: parseInt(index, 10) }
+        });
         document.dispatchEvent(event);
     }
 }
