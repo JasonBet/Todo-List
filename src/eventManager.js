@@ -4,7 +4,7 @@ export class EventManager {
         this.projectContainer = document.querySelector(".project-container");
 
         this.sidebarContainer.addEventListener("click", (e) => {
-            if(e.target.classList.contains("action-add-task")) {
+            if(e.target.closest(".action-add-task")) {
                 this.addTaskPopUp();
             } else if(e.target.classList.contains("action-add-project")) {
                 this.addProjectPopUp();

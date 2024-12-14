@@ -37,32 +37,4 @@ document.addEventListener("deleteProject", (e) => {
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
 })
 
-renderManager.renderSidebarContainer(projManager.getProjectNames());
-
-
-// Temp initial code to check functionality
-projManager.getCurrProject().addTodo({title: "wash dishes"});
-projManager.getCurrProject().addTodo({title: "run", dueDate: "01/01/2025"});
-projManager.getCurrProject().addTodo({title: "eat", priority: 3});
-projManager.getCurrProject().addTodo({title: "sleep", description: "For at least 8 hours"});
-
-projManager.getCurrProject().deleteTodo(projManager.getCurrProject().todos[1]);
-
-projManager.getCurrProject().editTodo(projManager.getCurrProject().todos[2], {priority: 2});
-projManager.getCurrProject().editTodo(projManager.getCurrProject().todos[0], {description: "by hand"});
-
-
-projManager.addProject("Long Term Goals");
-projManager.addProject("Groceries");
-
-// Test projManager ability to switch projects and add tasks
-projManager.setCurrProject(projManager.projectsArr[1]);
-projManager.getCurrProject().addTodo({title: "Get a job", priority: 3});
-
-projManager.setCurrProject(projManager.projectsArr[2]);
-projManager.getCurrProject().addTodo({title: "Bananas"});
-projManager.getCurrProject().addTodo({title: "Milk"});
-
-projManager.deleteProject(projManager.projectsArr[1]);
-
-renderManager.renderProjectContainer(projManager.getCurrProject());
+renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());

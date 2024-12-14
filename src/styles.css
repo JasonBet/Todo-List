@@ -54,8 +54,9 @@ img {
 }
 
 .svg-add-symbol {
-  width: 20px;
-  height: auto;
+  width: 30px;
+  height: 30px;
+  fill: aliceblue;
 }
 
 .projects-sidebar-container {
@@ -78,10 +79,24 @@ img {
 
 }
 
-.todo-item {
+.div-todo-item {
 
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.todo-item {
+  font-size: 1.25rem;
 }
 
 .delete-button {
   
+}
+
+.svg-bullet-symbol {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  fill: aliceblue;
 }
