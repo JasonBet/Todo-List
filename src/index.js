@@ -7,6 +7,13 @@ const projManager = new ProjectManager;
 const renderManager = new RenderManager;
 const eventManager = new EventManager;
 
+// Listen for dispatched events
+document.addEventListener("taskCreated", (e) => {
+    const {title, description, dueDate, priority} = e.detail;
+    projManager.getCurrProject().addTodo({title, description, dueDate, priority});
+    renderManager.renderProjectContainer(projManager.getCurrProject());
+})
+
 renderManager.renderSidebarContainer(projManager.getProjectNames());
 
 
