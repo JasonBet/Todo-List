@@ -31,6 +31,12 @@ document.addEventListener("switchProject", (e) => {
     })
 })
 
+document.addEventListener("deleteProject", (e) => {
+    projManager.deleteProject(projManager.getCurrProject());
+    projManager.setCurrProject(projManager.projectsArr[0]);
+    renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+})
+
 renderManager.renderSidebarContainer(projManager.getProjectNames());
 
 

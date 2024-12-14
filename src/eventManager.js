@@ -12,6 +12,12 @@ export class EventManager {
                 this.switchProject(e.target.textContent);
             }
         })
+
+        this.projectContainer.addEventListener("click", (e) => {
+            if(e.target.classList.contains("delete-button")){
+                this.deleteProject();
+            }
+        })
     }
 
     addTaskPopUp() {
@@ -131,6 +137,11 @@ export class EventManager {
         const event = new CustomEvent("switchProject", {
             detail: {title}
         });
+        document.dispatchEvent(event);
+    }
+
+    deleteProject() {
+        const event = new CustomEvent("deleteProject", {});
         document.dispatchEvent(event);
     }
 }

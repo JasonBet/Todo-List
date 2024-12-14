@@ -24,7 +24,12 @@ export class ProjectManager {
     }
 
     deleteProject(project) {
-        this.projectsArr.splice(this.getProjectIndex(project), 1);
+        if(this.projectsArr.length <=1) {
+            this.projectsArr.splice(this.getProjectIndex(project), 1);
+            this.addProject("Today");
+        } else {
+            this.projectsArr.splice(this.getProjectIndex(project), 1);
+        }   
     }
 
     getProjectNames() {
