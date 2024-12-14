@@ -47,4 +47,72 @@ document.addEventListener("completeTask", (e) => {
     }
 });
 
+document.addEventListener("editTodoItem", (e) => {
+    const { index } = e.detail;
+    const currProject = projManager.getCurrProject();
+    const todoItem = currProject.todos[index];
+
+    const editTaskDialog = document.createElement("dialog");
+    const form = document.createElement("form");
+
+    const title = document.createElement("input");
+    title.setAttribute("type", "text");
+    title.setAttribute("name", "title");
+    title.setAttribute("value", todoItem.title);
+
+    const description = document.createElement("input");
+    description.setAttribute("type", "text");
+    description.setAttribute("name", "description");
+    description.setAttribute("placeholder", "Description");
+    description.setAttribute("value", todoItem.description);
+
+    const dueDate = document.createElement("input");
+    dueDate.setAttribute("type", "date");
+    dueDate.setAttribute("name", "dueDate");
+    dueDate.setAttribute("value", todoItem.dueDate);
+
+    const priority = document.createElement("input");
+    priority.setAttribute("type", "number");
+    priority.setAttribute("name", "priority");
+    priority.setAttribute("placeholder", "Priority");
+    priority.setAttribute("value", todoItem.priority);
+
+    const submitButton = document.createElement("button");
+    submitButton.setAttribute("type", "submit");
+    submitButton.textContent = "Update Task";
+
+    const cancelButton = document.createElement("button");
+    cancelButton.formNoValidate = true;
+    cancelButton.textContent = "Cancel";
+    cancelButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        editTaskDialog.close();
+        form.reset();
+    });
+
+    form.appendChild(title);
+    form.appendChild(description);
+    form.appendChild(dueDate);
+    form.appendChild(priority);
+    form.appendChild(submitButton);
+    form.appendChild(cancelButton);
+    editTaskDialog.appendChild(form);
+    document.body.appendChild(editTaskDialog);
+    editTaskDialog.showModal();
+
+    // Handle form submission
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        todoItem.title = title.value;
+        todoItem.description = description.value;
+        todoItem.dueDate = dueDate.value;
+        todoItem.priority = parseInt(priority.value, 10);
+
+        renderManager.renderPage(projManager.getProjectNames(), currProject); // Re-render tasks
+        editTaskDialog.close();
+    });
+});
+
+
 renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());

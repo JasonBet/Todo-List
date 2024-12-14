@@ -18,6 +18,8 @@ export class EventManager {
                 this.deleteProject();
             } else if(e.target.closest(".svg-bullet-symbol")) {
                 this.completeTask(e);
+            } else if(e.target.classList.contains("todo-item")) {
+                this.editTodoItem(e);
             }
         })
 
@@ -166,6 +168,14 @@ export class EventManager {
     completeTask(e) {
         const index = e.target.closest(".svg-bullet-symbol").getAttribute("data-index");
         const event = new CustomEvent("completeTask", {
+            detail: { index: parseInt(index, 10) }
+        });
+        document.dispatchEvent(event);
+    }
+
+    editTodoItem(todo) {
+        const index = todo.target.closest(".div-todo-item").getAttribute("data-index");
+        const event = new CustomEvent("editTodoItem", {
             detail: { index: parseInt(index, 10) }
         });
         document.dispatchEvent(event);
