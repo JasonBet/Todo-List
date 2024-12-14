@@ -51,6 +51,16 @@ img {
   
 .add-task-sidebar {
   display: flex;
+  align-items: center;
+  gap: 8px;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+}
+
+.add-task-sidebar:hover {
+  cursor: pointer;
 }
 
 .svg-add-symbol {
@@ -64,7 +74,14 @@ img {
 }
 
 .projects-list-div {
+  color: blue;
+  margin: 8px 0px;
+}
 
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: aliceblue;
 }
 
 .project-name {
