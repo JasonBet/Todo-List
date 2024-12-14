@@ -77,9 +77,19 @@ export class RenderManager {
         })
     }
 
-    renderProjectContainer(currProject) {
+    renderProjectContainer(currProject) {   
         console.log(currProject.todos);
         this.projectName.textContent = currProject.name;
+        currProject.todos.forEach(todo => {
+            const divTodo = document.createElement("div");
+            divTodo.textContent = todo.title;
+            divTodo.classList.add("todo-item");
+            this.tasksContainer.appendChild(divTodo);
+        })
+    }
+
+    updateTasks(currProject) {
+        this.tasksContainer.innerHTML = "";
         currProject.todos.forEach(todo => {
             const divTodo = document.createElement("div");
             divTodo.textContent = todo.title;

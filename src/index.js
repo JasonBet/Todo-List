@@ -11,7 +11,7 @@ const eventManager = new EventManager;
 document.addEventListener("taskCreated", (e) => {
     const {title, description, dueDate, priority} = e.detail;
     projManager.getCurrProject().addTodo({title, description, dueDate, priority});
-    renderManager.renderProjectContainer(projManager.getCurrProject());
+    renderManager.updateTasks(projManager.getCurrProject());
 })
 
 renderManager.renderSidebarContainer(projManager.getProjectNames());
