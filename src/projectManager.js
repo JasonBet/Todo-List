@@ -8,6 +8,7 @@ export class ProjectManager {
     addProject(title) {
         const project = new Project(title);
         this.projectsArr.push(project);
+        this.setCurrProject(project);
     }
 
     getProjectIndex(project) {

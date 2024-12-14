@@ -80,6 +80,48 @@ export class EventManager {
     }
 
     addProjectPopUp() {
+        const addProjectDialog = document.createElement("dialog");
+        const form = document.createElement("form");
 
+        const title = document.createElement("input");
+        title.setAttribute("type", "text");
+        title.setAttribute("name", "title");
+        title.setAttribute("placeholder", "Project Name");
+
+        const submitButton = document.createElement("button");
+        submitButton.setAttribute("type", "submit");
+        submitButton.textContent = "Add Project";
+
+        const cancelButton = document.createElement("button");
+        cancelButton.formNoValidate = true;
+        cancelButton.textContent = "Cancel";
+        cancelButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            addProjectDialog.close();
+            form.reset();
+        })
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const title = formData.get("title");
+
+            // Dispatch events to index module to maintain loose coupling of modules
+            const event = new CustomEvent("projectCreated", {
+                detail: {title}
+            });
+            document.dispatchEvent(event);
+
+            addProjectDialog.close();
+            form.reset();
+        })
+
+        form.appendChild(title);
+        form.appendChild(submitButton);
+        form.appendChild(cancelButton);
+
+        addProjectDialog.appendChild(form);
+        this.sidebarContainer.appendChild(addProjectDialog);
+        addProjectDialog.showModal();
     }
 }

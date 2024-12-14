@@ -62,12 +62,13 @@ export class RenderManager {
         document.body.appendChild(this.contentContainer);
     }
 
-    renderPage() {
-        this.renderProjectContainer();
-        this.renderSidebarContainer();
+    renderPage(projectNames, currProject) {
+        this.renderProjectContainer(currProject);
+        this.renderSidebarContainer(projectNames);
     }
 
     renderSidebarContainer(projectNames) {
+        this.projectsListDiv.innerHTML = "";
         projectNames.forEach(name => {
             // Create div with class project-name for each project
             const div = document.createElement("div");
@@ -77,15 +78,9 @@ export class RenderManager {
         })
     }
 
-    renderProjectContainer(currProject) {   
-        console.log(currProject.todos);
+    renderProjectContainer(currProject) {  
         this.projectName.textContent = currProject.name;
-        currProject.todos.forEach(todo => {
-            const divTodo = document.createElement("div");
-            divTodo.textContent = todo.title;
-            divTodo.classList.add("todo-item");
-            this.tasksContainer.appendChild(divTodo);
-        })
+        this.updateTasks(currProject);
     }
 
     updateTasks(currProject) {

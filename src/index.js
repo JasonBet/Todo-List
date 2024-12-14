@@ -14,6 +14,13 @@ document.addEventListener("taskCreated", (e) => {
     renderManager.updateTasks(projManager.getCurrProject());
 })
 
+document.addEventListener("projectCreated", (e) => {
+    const {title} = e.detail;
+    console.log(e.detail);
+    projManager.addProject(title);
+    renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+})
+
 renderManager.renderSidebarContainer(projManager.getProjectNames());
 
 
@@ -41,7 +48,5 @@ projManager.getCurrProject().addTodo({title: "Bananas"});
 projManager.getCurrProject().addTodo({title: "Milk"});
 
 projManager.deleteProject(projManager.projectsArr[1]);
-console.log(JSON.stringify(projManager.projectsArr));
-console.log(projManager.getProjectNames());
 
 renderManager.renderProjectContainer(projManager.getCurrProject());
