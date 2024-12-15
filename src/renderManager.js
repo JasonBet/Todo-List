@@ -29,7 +29,7 @@ export class RenderManager {
         this.projectsListDiv = document.createElement("div");
         this.projectsListDiv.classList.add("projects-list-div");
         this.addProjectButton = document.createElement("button");
-        this.addProjectButton.classList.add("action-add-project");
+        this.addProjectButton.classList.add("action-add-project", "button-add-project");
         this.addProjectButton.textContent = "Add Project";
 
         this.projectsListContainer.appendChild(this.projectListHead);

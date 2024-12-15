@@ -30,7 +30,7 @@ img {
   height: 100vh;
 
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 1fr 2.75fr;
 }
 
 .content-container > *{
@@ -38,24 +38,41 @@ img {
 }
 
 .sidebar-container {
-  background-color: red;
+  background-color: #3A6EA5;
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
 }
 
 .project-container {
-  background-color: green;
+  background-color: #004E98;
   display: grid;
   grid-template-rows: 100px 3fr 100px;
+}
+
+.button-add-project {
+  border: none;
+  width: 130px;
+  height: 35px;
+  border-radius: 8px;
+  color: #FF6700;
+  background-color: white;
+  margin-top: 80px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.button-add-project:hover {
+  cursor: pointer;
 }
   
 .add-task-sidebar {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: aliceblue;
+  color: white;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 32px;
 }
 
@@ -66,7 +83,7 @@ img {
 .svg-add-symbol {
   width: 30px;
   height: 30px;
-  fill: aliceblue;
+  fill: white;
 }
 
 .projects-sidebar-container {
@@ -74,22 +91,27 @@ img {
 }
 
 .projects-list-div {
-  color: blue;
+  color: #EBEBEB;
   margin: 8px 0px;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: aliceblue;
+  color: white;
 }
 
 .project-name {
+  font-size: 1.5rem;
+}
 
+.project-name:hover {
+  cursor: pointer;
 }
 
 .project-header {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  color: white;
   font-weight: bold;
 }
 
@@ -99,22 +121,39 @@ h2 {
 
 .div-todo-item {
   display: flex;
+  gap: 4px;
   align-items: center;
-  gap: 12px;
   margin-bottom: 16px;
 }
 
 .todo-item {
   font-size: 1.25rem;
+  padding: 0px 8px;
+  color: #EBEBEB;
+}
+
+.todo-item:hover {
+  cursor: pointer;
 }
 
 .delete-button {
-  
+  width: 180px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  background-color: #FF6700;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.delete-button:hover {
+  cursor: pointer;
 }
 
 .svg-bullet-symbol {
   vertical-align: middle;
   width: 30px;
   height: 30px;
-  fill: aliceblue;
+  fill: white;
 }
