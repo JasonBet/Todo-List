@@ -1,6 +1,7 @@
-export function storage(data) {
+export function storage(data, currentProjIndex) {
     const projectsData = JSON.stringify(data);
 
     localStorage.setItem('projects', projectsData);
-    console.log("hello")
+    localStorage.setItem('currProj', currentProjIndex);
+
 }

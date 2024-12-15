@@ -3,6 +3,7 @@ import { ProjectManager } from "./projectManager.js";
 import { RenderManager } from "./renderManager.js";
 import { EventManager } from "./eventManager.js";
 import { storage } from "./localstore.js";
+import { retrieve } from "./localretrieve.js";
 
 const projManager = new ProjectManager;
 const renderManager = new RenderManager;
@@ -13,7 +14,7 @@ document.addEventListener("taskCreated", (e) => {
     const {title, description, dueDate, priority} = e.detail;
     projManager.getCurrProject().addTodo({title, description, dueDate, priority});
     renderManager.updateTasks(projManager.getCurrProject());
-    storage(projManager.projectsArr);
+    storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));
 })
 
 document.addEventListener("projectCreated", (e) => {
@@ -21,7 +22,7 @@ document.addEventListener("projectCreated", (e) => {
     console.log(e.detail);
     projManager.addProject(title);
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
-    storage(projManager.projectsArr);
+    storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));
 })
 
 document.addEventListener("switchProject", (e) => {
@@ -30,6 +31,7 @@ document.addEventListener("switchProject", (e) => {
         if(project.name === title){
             projManager.setCurrProject(project);
             renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+            storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));
         }
     })
 })
@@ -38,7 +40,7 @@ document.addEventListener("deleteProject", () => {
     projManager.deleteProject(projManager.getCurrProject());
     projManager.setCurrProject(projManager.projectsArr[0]);
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
-    storage(projManager.projectsArr);
+    storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));
 })
 
 document.addEventListener("completeTask", (e) => {
@@ -48,8 +50,8 @@ document.addEventListener("completeTask", (e) => {
     if (index >= 0 && index < currProject.todos.length) {
         currProject.todos.splice(index, 1);
         renderManager.renderPage(projManager.getProjectNames(), currProject);
-    }
-    storage(projManager.projectsArr);
+        storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));
+    } 
 });
 
 document.addEventListener("editTodoItem", (e) => {
@@ -116,11 +118,13 @@ document.addEventListener("editTodoItem", (e) => {
 
         renderManager.renderPage(projManager.getProjectNames(), currProject); // Re-render tasks
         editTaskDialog.close();
+        storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));
     });
-    storage(projManager.projectsArr);
+    
 });
 
+const localData = retrieve();
 
+projManager.hydrateProjects(localData[0], localData[1]);
 renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
-
-storage(projManager.projectsArr);
+storage(projManager.projectsArr, projManager.getProjectIndex(projManager.getCurrProject()));

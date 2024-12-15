@@ -6,6 +6,17 @@ export class Project {
         this.todos = [];
     }
 
+    static fromData(data) {
+        const project = new Project(data.name);
+        project.todos = (data.todos || []).map(todo => new Todo(
+            todo.title,
+            todo.description,
+            todo.dueDate,
+            todo.priority
+        ));
+        return project;
+    }
+
     addTodo({title, description = "", dueDate = "", priority = 0}) {
         const todoItem = new Todo(title, description, dueDate, priority);
         this.todos.push(todoItem);

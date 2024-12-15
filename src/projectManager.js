@@ -5,6 +5,23 @@ export class ProjectManager {
         this.currProject = this.projectsArr[0];
     }
 
+    hydrateProjects(projectsData, currentProjIndex) {
+        // If no projects data is retrieved, don't overwrite the default "Today" project
+        if (!projectsData || projectsData.length === 0) {
+            // Keep the default "Today" project created in the constructor
+            return;
+        }
+    
+        this.projectsArr = projectsData.map(projectData => Project.fromData(projectData));
+    
+        const safeIndex = currentProjIndex >= 0 && currentProjIndex < this.projectsArr.length
+            ? currentProjIndex
+            : 0;
+        
+        this.setCurrProject(this.projectsArr[safeIndex]);
+    }
+
+
     addProject(title) {
         const project = new Project(title);
         this.projectsArr.push(project);
