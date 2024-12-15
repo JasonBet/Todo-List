@@ -92,14 +92,19 @@ export class RenderManager {
                 <title>circle-outline</title>
                 <path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
             this.svgAddBullet.classList.add("svg-bullet-symbol");
-            this.svgAddBullet.setAttribute("data-index", index); // Add data attribute here too
+            this.svgAddBullet.setAttribute("data-index", index);
 
             const todoItemText = document.createElement("p");
             todoItemText.textContent = todo.title;
             todoItemText.classList.add("todo-item");
 
+            const todoDueDate = document.createElement("p");
+            todoDueDate.textContent = todo.dueDate;
+            todoDueDate.classList.add("todo-item");
+
             divTodoItem.appendChild(this.svgAddBullet);
             divTodoItem.appendChild(todoItemText);
+            divTodoItem.appendChild(todoDueDate);
             this.tasksContainer.appendChild(divTodoItem);
         });
     }
