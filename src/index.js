@@ -2,6 +2,7 @@ import "./styles.css";
 import { ProjectManager } from "./projectManager.js";
 import { RenderManager } from "./renderManager.js";
 import { EventManager } from "./eventManager.js";
+import { storage } from "./localstore.js";
 
 const projManager = new ProjectManager;
 const renderManager = new RenderManager;
@@ -12,6 +13,7 @@ document.addEventListener("taskCreated", (e) => {
     const {title, description, dueDate, priority} = e.detail;
     projManager.getCurrProject().addTodo({title, description, dueDate, priority});
     renderManager.updateTasks(projManager.getCurrProject());
+    storage(projManager.projectsArr);
 })
 
 document.addEventListener("projectCreated", (e) => {
@@ -19,6 +21,7 @@ document.addEventListener("projectCreated", (e) => {
     console.log(e.detail);
     projManager.addProject(title);
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+    storage(projManager.projectsArr);
 })
 
 document.addEventListener("switchProject", (e) => {
@@ -35,6 +38,7 @@ document.addEventListener("deleteProject", () => {
     projManager.deleteProject(projManager.getCurrProject());
     projManager.setCurrProject(projManager.projectsArr[0]);
     renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+    storage(projManager.projectsArr);
 })
 
 document.addEventListener("completeTask", (e) => {
@@ -45,6 +49,7 @@ document.addEventListener("completeTask", (e) => {
         currProject.todos.splice(index, 1);
         renderManager.renderPage(projManager.getProjectNames(), currProject);
     }
+    storage(projManager.projectsArr);
 });
 
 document.addEventListener("editTodoItem", (e) => {
@@ -112,7 +117,10 @@ document.addEventListener("editTodoItem", (e) => {
         renderManager.renderPage(projManager.getProjectNames(), currProject); // Re-render tasks
         editTaskDialog.close();
     });
+    storage(projManager.projectsArr);
 });
 
 
 renderManager.renderPage(projManager.getProjectNames(), projManager.getCurrProject());
+
+storage(projManager.projectsArr);
